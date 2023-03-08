@@ -1,7 +1,10 @@
 import { setWithExpiry, getWithExpiry } from "./modules/localStorageHelpers.js";
 
+// const key = "r6docL1BtytejUjST2TEPADAgG4DOEtu";
+// const API = `https://api.nytimes.com/svc/books/v3/lists/best-sellers/history.json?api-key=${key}`;
+
 const key = "r6docL1BtytejUjST2TEPADAgG4DOEtu";
-const API = `https://api.nytimes.com/svc/books/v3/lists/best-sellers/history.json?api-key=${key}`;
+const API = `https://api.nytimes.com/svc/topstories/v2/nyregion.json?api-key=${key}`;
 const storagePrefix = "nyt-autosave";
 
 function getStories() {
@@ -41,4 +44,23 @@ function showData(stories) {
 
 if (document.querySelector(".home")) {
   getStories();
+}
+
+// ====================
+
+document.addEventListener("click", clickHandlers);
+
+function clickHandlers(event) {
+  if (event.target.matches("#pull")) {
+    showMenu(event);
+    event.preventDefault();
+  }
+  if (event.target.matches(".content-video a")) {
+    videoSwitch(event);
+    event.preventDefault();
+  }
+  if (event.target.matches(".image-tn img")) {
+    runCarousel(event);
+    event.preventDefault();
+  }
 }
